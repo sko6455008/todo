@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TodoApp</title>
+
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+    <div id="app">
+        <h2>TodoLists</h2>
+        <form v-on:submit.prevent>
+        <!-- submiteventによってリロードされ,404表示を防ぐ -->
+
+            <input type="text" v-model="newItem">
+            <button v-on:click="addItem">
+                Add
+            </button>
+            <ul>
+                <!-- todo→value,index→key -->
+                <li v-for="(todo, index) in todos">
+                    <input type="checkbox" v-model="todo.isDone">
+
+                    <!-- 斜線をひく -->
+                    <span v-bind:class="{done: todo.isDone}">{{todo.item}}</span>
+
+                    <!-- 削除ボタン -->
+                    <button v-on:click="deleteItem(index)">Delete</button>
+                </li>
+            </ul>
+            <pre>{{$data}}</pre>
+            <!-- <pre>{{ $data }}</pre>データ確認 -->
+        </form>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script src="js/main.js"></script>
+
+</body>
+</html>
